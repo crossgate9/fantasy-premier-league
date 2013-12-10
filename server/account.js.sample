@@ -1,0 +1,6 @@
+(function() {
+    exports.account = {
+        'email': 'your-name@yahoo.com',
+        'password': 'a-password'
+    };
+}).call(this);

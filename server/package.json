@@ -1,0 +1,10 @@
+{
+    "name": "fantasy-premier-league",
+    "version": "0.1.0",
+    "author": "Allen Koo <crossgate9@gmail.com>",
+    "dependencies": [
+    ],
+    "engines": {
+        "node": ">=0.6"
+    }
+}
