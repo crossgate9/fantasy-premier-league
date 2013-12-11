@@ -1,4 +1,11 @@
-var account = require('./account').account;
+if (! Array.prototype.last) {
+    Array.prototype.last = function() {
+        return this[this.length - 1];
+    };
+}
+
+var account = require('./account').account,
+    players = require('./player').players;
 
 var casper = require('casper').create({
     verbose: true,
@@ -13,8 +20,13 @@ var casper = require('casper').create({
     stepTimeout: 100000
 });
 
+var fs = require('fs'),
+    folderPrefix = 'player',
+    utils = require('utils');
+
 var startURL = 'https://login.yahoo.com/config/login?',
-    teamURL = 'http://uk.eurosport.yahoo.com/fantasy/premier-league/team';
+    teamURL = 'http://uk.eurosport.yahoo.com/fantasy/premier-league/team',
+    playerURL = 'http://uk.eurosport.yahoo.com/fantasy/premier-league/details/';
 
 console.log('Application Start ...');
 
@@ -34,8 +46,31 @@ casper.waitFor(function check() {
 }, function timeout() {
 }, 100000);
 
-casper.thenOpen(teamURL, function() {
-    this.captureSelector('3.png', 'body');
+var i;
+var playerCount = players.length;
+var urls = [];
+for (i = 0; i < playerCount; i++) {
+    urls.push(playerURL + players[i]);
+}
+
+casper.eachThen(urls, function(response) {
+    this.thenOpen(response.data, function(response) {
+        var id = response.url.split('/').last();
+        var data = {
+            'id': id,
+            'name': this.fetchText('.player-details h2'),
+            'no': this.fetchText('.player-details .team-info span:nth-child(0)'),
+            'position': this.fetchText('.player-details .team-info span:nth-child(1)'),
+            'team': this.fetchText('.player-details .team-info span:nth-child(2)'),
+            'total': this.fetchText('abbr[title="Total Points"] em'),
+            'price': this.fetchText('abbr[title="Price"] em'),
+            'form': this.fetchText('abbr[title="Form"] em'),
+            'ppg': this.fetchText('abbr[title="Points Per Game"] em'),
+            'ppp': this.fetchText('abbr[title="Points Per Price"] em'),
+            'po': this.fetchText('abbr[title="Percentage Owned"] em')
+        };
+        fs.write('./' + folderPrefix + '/' + id + '.txt', JSON.stringify(data), 'w');
+    });
 });
 
 casper.run();
