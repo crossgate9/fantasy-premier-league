@@ -59,9 +59,9 @@ casper.eachThen(urls, function(response) {
         var data = {
             'id': id,
             'name': this.fetchText('.player-details h2'),
-            'no': this.fetchText('.player-details .team-info span:nth-child(0)'),
-            'position': this.fetchText('.player-details .team-info span:nth-child(1)'),
-            'team': this.fetchText('.player-details .team-info span:nth-child(2)'),
+            'no': this.fetchText('.player-details .team-info span:nth-child(1)'),
+            'position': this.fetchText('.player-details .team-info span:nth-child(2)'),
+            'team': this.fetchText('.player-details .team-info span:nth-child(3)'),
             'total': this.fetchText('abbr[title="Total Points"] em'),
             'price': this.fetchText('abbr[title="Price"] em'),
             'form': this.fetchText('abbr[title="Form"] em'),
