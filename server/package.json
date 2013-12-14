@@ -1,9 +1,19 @@
 {
     "name": "fantasy-premier-league",
+    "description": "An assistance application for uk.eurosport.yahoo.com/fantasy/premier-league",
+    "repository": {
+        "type": "git",
+        "url" : "https://github.com/crossgate9/fantasy-premier-league.git"
+    },
     "version": "0.1.0",
     "author": "Allen Koo <crossgate9@gmail.com>",
-    "dependencies": [
-    ],
+    "readmeFilename": "../README.md",
+    "dependencies": {
+        "async": "*",
+        "sprintf": "*",
+        "node-getopt": "*",
+        "underscore": "*"
+    },
     "engines": {
         "node": ">=0.6"
     }
