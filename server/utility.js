@@ -20,6 +20,10 @@ var settings = require('./settings').settings;
         return (obj === null || typeof obj === 'undefined');
     };
 
+    utility.getTempFile = function() {
+        return settings['tmp-file'];
+    };
+
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
             exports = module.exports = utility;

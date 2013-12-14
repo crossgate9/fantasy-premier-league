@@ -5,7 +5,7 @@ if (! Array.prototype.last) {
 }
 
 var account = require('./account').account,
-    players = require('./player').players;
+    utility = require('./utility');
 
 var casper = require('casper').create({
     verbose: true,
@@ -21,14 +21,17 @@ var casper = require('casper').create({
 });
 
 var fs = require('fs'),
-    folderPrefix = 'player',
     utils = require('utils');
 
 var startURL = 'https://login.yahoo.com/config/login?',
     teamURL = 'http://uk.eurosport.yahoo.com/fantasy/premier-league/team',
     playerURL = 'http://uk.eurosport.yahoo.com/fantasy/premier-league/details/';
 
-console.log('Application Start ...');
+var i, urls = [];
+var playerList = JSON.parse(fs.read(utility.getTempFile()));
+for (i = 0; i < playerList.length; i++) {
+    urls.push(playerURL + playerList[i]);
+}
 
 casper.start(startURL);
 
@@ -46,13 +49,6 @@ casper.waitFor(function check() {
 }, function timeout() {
 }, 100000);
 
-var i;
-var playerCount = players.length;
-var urls = [];
-for (i = 0; i < playerCount; i++) {
-    urls.push(playerURL + players[i]);
-}
-
 casper.eachThen(urls, function(response) {
     this.thenOpen(response.data, function(response) {
         var id = response.url.split('/').last();
@@ -69,7 +65,7 @@ casper.eachThen(urls, function(response) {
             'ppp': this.fetchText('abbr[title="Points Per Price"] em'),
             'po': this.fetchText('abbr[title="Percentage Owned"] em')
         };
-        fs.write('./' + folderPrefix + '/' + id + '.txt', JSON.stringify(data), 'w');
+        fs.write(utility.getPlayerFolder() + id + '.txt', JSON.stringify(data), 'w');
     });
 });
 

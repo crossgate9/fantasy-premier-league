@@ -2,6 +2,7 @@
     settings = {
         'base-folder': './',
         'player-folder': 'player/',
+        'tmp-file': 'tmp.txt',
         'csv': {
             'filename': 'player.csv',
             'columns': {
