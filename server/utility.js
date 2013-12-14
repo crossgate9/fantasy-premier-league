@@ -16,6 +16,10 @@ var settings = require('./settings').settings;
         return settings['csv']['columns'];
     };
 
+    utility.isnull = function(obj) {
+        return (obj === null || typeof obj === 'undefined');
+    };
+
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
             exports = module.exports = utility;
