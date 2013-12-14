@@ -63,7 +63,8 @@ casper.eachThen(urls, function(response) {
             'form': this.fetchText('abbr[title="Form"] em'),
             'ppg': this.fetchText('abbr[title="Points Per Game"] em'),
             'ppp': this.fetchText('abbr[title="Points Per Price"] em'),
-            'po': this.fetchText('abbr[title="Percentage Owned"] em')
+            'po': this.fetchText('abbr[title="Percentage Owned"] em'),
+            'stat': this.getHTML('#stat-box')
         };
         fs.write(utility.getPlayerFolder() + id + '.txt', JSON.stringify(data), 'w');
     });
