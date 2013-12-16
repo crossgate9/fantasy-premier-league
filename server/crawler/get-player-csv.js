@@ -1,6 +1,6 @@
 var fs = require('fs'),
     async = require('async'),
-    utility = require('./utility').utility;
+    utility = require('../utility').utility;
 
 var playerFolder = utility.getPlayerFolder();
 var playerList = fs.readdirSync(playerFolder);

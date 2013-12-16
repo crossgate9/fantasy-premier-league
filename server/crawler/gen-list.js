@@ -1,9 +1,9 @@
 var fs = require('fs'),
     Getopt = require('node-getopt'),
     sprintf = require('sprintf').sprintf;
-    utility = require('./utility');
+    utility = require('../utility');
 
-var players = require('./player').players;
+var players = require('../player').players;
 
 var getopt = new Getopt([
     ['', 'refresh-player=ARG'],

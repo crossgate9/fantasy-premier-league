@@ -1,1 +1,1 @@
-node get-player-csv.js
+node ./crawler/get-player-csv.js
