@@ -1,6 +1,7 @@
 var fs = require('fs'),
     async = require('async'),
-    utility = require('../utility').utility;
+    utility = require('../utility').utility,
+    Parser = require('./parser').parser;
 
 var playerFolder = utility.getPlayerFolder();
 var playerList = fs.readdirSync(playerFolder);
@@ -17,11 +18,26 @@ async.forEach(playerList, function(val, done) {
     var i, row, l = players.length;
     var columns = utility.getCSVColumns();
     var stream = fs.createWriteStream(utility.getCSVFilename());
+    var parser = new Parser();
     stream.once('open', function(fd) {
+        // output columns
+        var idx;
+        row = [];
+        for (idx in columns) {
+            row.push(columns[idx]);
+        }
+        stream.write(row.join(','));
+        stream.write('\n');
+
         for (i = 0; i < l; i++) {
             row = [];
-            for (var idx in columns) {
-                row.push(players[i][idx]);
+            var stat = parser.process(players[i]['stat']);
+            for (idx in columns) {
+                if (utility.isnull(players[i][idx])) {
+                    row.push(stat[idx]);
+                } else {
+                    row.push(players[i][idx]);
+                }
             }
             stream.write(row.join(','));
             stream.write('\n');

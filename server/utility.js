@@ -24,6 +24,10 @@ var settings = require('./settings').settings;
         return settings['tmp-file'];
     };
 
+    utility.getStatColumns = function() {
+        return settings['stat']['columns'];
+    };
+
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
             exports = module.exports = utility;
