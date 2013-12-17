@@ -1,4 +1,5 @@
-var settings = require('./settings').settings;
+var settings = require('../settings').settings;
+var _ = require('underscore');
 
 (function() {
     var utility = function() { };
@@ -26,6 +27,23 @@ var settings = require('./settings').settings;
 
     utility.getStatColumns = function() {
         return settings['stat']['columns'];
+    };
+
+    utility.getTeams = function() {
+        return settings['team'];
+    };
+
+    utility.getTeamId = function(name) {
+        var teams = _.invert(this.getTeams());
+        if (this.isnull(teams[name]) === false) {
+            return teams[name];
+        } else {
+            throw new Error('Team not found');
+        }
+    };
+
+    utility.isObject = function(obj) {
+        return Object.prototype.toString.call(obj) === '[object Object]';
     };
 
     if (typeof exports !== 'undefined') {
