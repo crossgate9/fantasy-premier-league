@@ -5,7 +5,7 @@ if (! Array.prototype.last) {
 }
 
 var account = require('../account').account,
-    utility = require('../utility');
+    utility = require('../lib/utility');
 
 var casper = require('casper').create({
     verbose: true,

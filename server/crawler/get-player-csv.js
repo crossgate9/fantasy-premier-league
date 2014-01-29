@@ -1,6 +1,6 @@
 var fs = require('fs'),
     async = require('async'),
-    utility = require('../utility').utility,
+    utility = require('../lib/utility').utility,
     Parser = require('./parser').parser;
 
 var playerFolder = utility.getPlayerFolder();
@@ -31,7 +31,7 @@ async.forEach(playerList, function(val, done) {
 
         for (i = 0; i < l; i++) {
             row = [];
-            var stat = parser.process(players[i]['stat']);
+            var stat = parser.stat(players[i]['stat']);
             for (idx in columns) {
                 if (utility.isnull(players[i][idx])) {
                     row.push(stat[idx]);
