@@ -1,5 +1,6 @@
 (function() {
-    var utility = require('../lib/utility');
+    var utility = require('../lib/utility'),
+        Team = require('./team');
 
     var Player = function() { };
     Player.version = '0.1.0';
@@ -28,6 +29,20 @@
         }
         // get single field
         return this.data[field];
+    };
+
+    Player.prototype.getTeam = function() {
+        if (utility.isnull(this.data['team']) === true) {
+            throw new Error('Team info missing');
+        }
+
+        var team = new Team();
+        team.init(this.data['team']);
+        return team;
+    };
+
+    Player.prototype.getAllPlayers = function() {
+        
     };
     
     if (typeof exports !== 'undefined') {

@@ -10,4 +10,10 @@ suite('Player Related Function', function() {
         p.init({ 'name': 'Allen', 'po': 'Forward' });
         assert.deepEqual({'name': 'Allen', 'po': 'Forward'}, p.getData());
     });
+
+    test('Get Team', function() {
+        var p = new Player();
+        p.init({ 'name': 'Allen', 'team': 'Liverpool' });
+        assert.deepEqual({'id': 8, 'name': 'Liverpool'}, p.getTeam());
+    });
 });
