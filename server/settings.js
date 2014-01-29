@@ -3,6 +3,7 @@
         'base-folder': './',
         'player-folder': 'player/',
         'tmp-file': 'tmp.txt',
+        'firebase': 'https://fantasy-premier-league.firebaseio.com/',
         'csv': {
             'filename': 'player.csv',
             'columns': {
@@ -65,6 +66,32 @@
                 'rc': 'Red Card',
                 'ga': 'Goal Allowed'
             }
+        },
+        'team': {
+            0: 'Arsenal',
+            1: 'Aston Villa',
+            2: 'Cardiff City',
+            3: 'Chelsea',
+            4: 'Crystal Palace',
+            5: 'Everton',
+            6: 'Fulham',
+            7: 'Hull City',
+            8: 'Liverpool',
+            9: 'Manchester City',
+            10: 'Manchester United',
+            11: 'Newcastle',
+            12: 'Norwich City',
+            13: 'Southampton',
+            14: 'Stoke City',
+            15: 'Sunderland',
+            16: 'Swansea City',
+            17: 'Tottenham Hotspur',
+            18: 'West Bromwich',
+            19: 'West Ham United'
+        },
+        // xxxx to get online, set manually temporarily
+        'fixture': {
+            0: 8, 8: 0
         }
     };
 

@@ -11,7 +11,8 @@
     "async": "*",
     "sprintf": "*",
     "node-getopt": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "firebase": "*"
   },
   "engines": {
     "node": ">=0.6"

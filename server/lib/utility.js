@@ -9,6 +9,10 @@ var _ = require('underscore');
         return settings['base-folder'] + settings['player-folder'];
     };
 
+    utility.getFirebaseUrl = function() {
+        return settings['firebase'];
+    };
+
     utility.getCSVFilename = function() {
         return settings['csv']['filename'];
     };
@@ -33,6 +37,10 @@ var _ = require('underscore');
         return settings['team'];
     };
 
+    utility.getTeam = function(id) {
+        return settings['team'][id];
+    };
+
     utility.getTeamId = function(name) {
         var teams = _.invert(this.getTeams());
         if (this.isnull(teams[name]) === false) {
@@ -44,6 +52,10 @@ var _ = require('underscore');
 
     utility.isObject = function(obj) {
         return Object.prototype.toString.call(obj) === '[object Object]';
+    };
+
+    utility.isNumber = function(obj) {
+        return Object.prototype.toString.call(obj) === '[object Number]';
     };
 
     if (typeof exports !== 'undefined') {
