@@ -13,6 +13,8 @@ USAGE
 
 	The optinos for crawler.sh is as following:
 	
+  **--proxy=xx.xx.xx.xx:xx:** Set Proxy, to ensure it won't be banned by the server
+
 	**--refresh-player="true":** All the players information will be re-fetched. Or leave it along to run only for missing players.
 
 5. Run the _output.sh_ script to get CSV file. You can find _player.csv_ under the server folder.
