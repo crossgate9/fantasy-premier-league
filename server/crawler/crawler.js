@@ -56,6 +56,13 @@ if (playerList.length === 0) {
     casper.eachThen(urls, function(response) {
         this.thenOpen(response.data, function(response) {
             var id = response.url.split('/').last();
+            var stat = null;
+            try {
+                stat = this.getHTML('#stat-box');
+            } catch (err) {
+                console.log(id + ': error');
+                return;
+            }
             var data = {
                 'id': id,
                 'name': this.fetchText('.player-details h2'),
@@ -68,9 +75,12 @@ if (playerList.length === 0) {
                 'ppg': this.fetchText('abbr[title="Points Per Game"] em'),
                 'ppp': this.fetchText('abbr[title="Points Per Price"] em'),
                 'po': this.fetchText('abbr[title="Percentage Owned"] em'),
-                'stat': this.getHTML('#stat-box')
+                'stat': stat
             };
             fs.write(utility.getPlayerFolder() + id + '.txt', JSON.stringify(data), 'w');
+        });
+        this.wait(1000, function() {
+            this.echo('wait for 1000ms');
         });
     });
 
